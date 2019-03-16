@@ -18,6 +18,7 @@ jobs:
       - run: bash simple2d.sh install -y
 
       # Build and test gem
+      - run: bundle install
       - run: rake
 
       # Test native
