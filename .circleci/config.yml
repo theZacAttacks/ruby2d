@@ -13,10 +13,9 @@ jobs:
     steps:
       - checkout
 
-      # Update Homebrew and tap Simple 2D
-      - run: brew update
-      - run: brew tap simple2d/tap
-      - run: brew install simple2d mruby
+      # Install Simple 2D
+      - wget https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh
+      - bash simple2d.sh install -y
 
       # Build and test gem
       - run: rake
@@ -31,4 +30,3 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
