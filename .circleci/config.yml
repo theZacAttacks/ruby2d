@@ -12,6 +12,11 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: "Pull Submodules"
+          command: |
+            git submodule init
+            git submodule update --remote
 
       # Install Simple 2D
       - run: wget https://raw.githubusercontent.com/simple2d/simple2d/master/bin/simple2d.sh
@@ -24,10 +29,3 @@ jobs:
       # Test native
       - run: ruby2d build --native test/ci-build.rb
       - run: ./build/app
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
